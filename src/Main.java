@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
         //System.getProperties().put("proxySet", "true");
-        //System.getProperties().put("proxyHost", "152.78.255.75");
+        //System.getProperties().put("proxyHost", "152.78.128.51");
         //System.getProperties().put("proxyPort", "3128");
         //Meant to setup a proxy to get past the USO firewall, currently not working
 
