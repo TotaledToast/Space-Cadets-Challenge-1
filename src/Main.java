@@ -18,7 +18,7 @@ public class Main {
         String inputID = readerText.readLine();
         //reads a string from the console, in this case intended to be the E-mail ID of a user
         readerText.close();
-        //closes the bufferreader
+        //closes the bufferreader for user input
 
         String stringURL = "https://www.southampton.ac.uk/people/" + inputID;
         //concatinates the web address of the desired output page
@@ -49,7 +49,7 @@ public class Main {
             }
         }
         readerURL.close();
-        //closes the buffer reader
+        //closes the buffer reader for the URL
 
 
 
