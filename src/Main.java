@@ -9,10 +9,6 @@ import java.net.*;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        //System.getProperties().put("proxySet", "true");
-        //System.getProperties().put("proxyHost", "152.78.128.51");
-        //System.getProperties().put("proxyPort", "3128");
-        //Meant to setup a proxy to get past the USO firewall, currently not working
 
         BufferedReader readerText = new BufferedReader(new InputStreamReader(System.in));
         //sets up the bufferreader to reader text inputted to the console
@@ -22,7 +18,7 @@ public class Main {
         readerText.close();
         //closes the bufferreader
 
-        String stringURL = "https://secure.ecs.soton.ac.uk/people/" + inputID;
+        String stringURL = "https://www.southampton.ac.uk/people/" + inputID;
         //concatinates the web address of the desired output page
         URI fullURI = URI.create(stringURL);
         //creates a URI using the web address, URI is used to create the URL
@@ -33,10 +29,19 @@ public class Main {
 
         BufferedReader readerURL = new BufferedReader( new InputStreamReader(fullURL.openStream()));
         //creates a bufferreader to read the contents of the websearch using the URL
-        String inputLine;
-        while ((inputLine = readerURL.readLine()) != null)
+        String outputLine;
+        while ((outputLine = readerURL.readLine()) != null) {
             //cycles through every line of html on the webpage, will be used to search for the line wil the users name on
-            System.out.println(inputLine);
+            if (outputLine.contains("og:title")) {
+                //the html line containing the name of the use is a meta tag with the property "og:title", meaning we can search for this property tag to find the name
+                String[] splitString = outputLine.split("content=\"");
+                //Splits the line of html so that the begining of the second half of the split is the name of the professor. This is because the name of the professor is prefaced by "content="
+                String Name = splitString[1].split("\"")[0];
+                //splits the section with the professors name in it down to just the name, by removing everything after the quotation mark after the name
+                System.out.println(Name);
+                break;
+            }
+        }
         readerURL.close();
         //closes the buffer reader
 
